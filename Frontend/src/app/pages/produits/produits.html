@@ -1,0 +1,65 @@
+<h2>Gestion des produits</h2>
+
+<form class="form" (ngSubmit)="save()">
+  <input
+    name="nomProduit"
+    placeholder="Nom du produit"
+    [(ngModel)]="form.nom_produit"
+    required
+  >
+
+  <input
+    name="prixProduit"
+    type="number"
+    placeholder="Prix unitaire"
+    [(ngModel)]="form.prix_unitaire_produit"
+    required
+  >
+
+  <select name="categorie" [(ngModel)]="form.id_Categorie">
+    @for (categorie of categorieService.categories(); track categorie.id_Categorie) {
+      <option [value]="categorie.id_Categorie">
+        {{ categorie.nom_categorie }}
+      </option>
+    }
+  </select>
+
+  <button type="submit">
+    @if (editingId()) {
+      Modifier
+    } @else {
+      Ajouter
+    }
+  </button>
+
+  @if (editingId()) {
+    <button type="button" (click)="reset()">Annuler</button>
+  }
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Produit</th>
+      <th>Prix</th>
+      <th>Catégorie</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (produit of produitService.produits(); track produit.id_Produit) {
+      <tr>
+        <td>{{ produit.id_Produit }}</td>
+        <td>{{ produit.nom_produit }}</td>
+        <td>{{ produit.prix_unitaire_produit }} €</td>
+        <td>{{ getNomCategorie(produit.id_Categorie) }}</td>
+        <td>
+          <button (click)="edit(produit)">Modifier</button>
+          <button (click)="delete(produit.id_Produit)">Supprimer</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

@@ -1,0 +1,75 @@
+<h2>Détails des commandes</h2>
+
+<form class="form" (ngSubmit)="save()">
+  <select name="commande" [(ngModel)]="form.id_Commande">
+    @for (commande of commandeService.commandes(); track commande.id_Commande) {
+      <option [value]="commande.id_Commande">
+        Commande #{{ commande.id_Commande }} - {{ commande.date_Commande }}
+      </option>
+    }
+  </select>
+
+  <select name="produit" [(ngModel)]="form.id_Produit">
+    @for (produit of produitService.produits(); track produit.id_Produit) {
+      <option [value]="produit.id_Produit">
+        {{ produit.nom_produit }}
+      </option>
+    }
+  </select>
+
+  <select name="dimension" [(ngModel)]="form.id_Dimension">
+    @for (dimension of dimensionService.dimensions(); track dimension.id_Dimension) {
+      <option [value]="dimension.id_Dimension">
+        H: {{ dimension.hauteur }} - S: {{ dimension.section }} - L: {{ dimension.largeur }}
+      </option>
+    }
+  </select>
+
+  <input
+    type="number"
+    name="quantite"
+    placeholder="Quantité"
+    [(ngModel)]="form.quantite"
+    required
+  >
+
+  <input
+    type="number"
+    name="prixUnitaire"
+    placeholder="Prix unitaire"
+    [(ngModel)]="form.prix_Unitaire"
+    required
+  >
+
+  <button type="submit">Ajouter</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Commande</th>
+      <th>Produit</th>
+      <th>Dimension</th>
+      <th>Quantité</th>
+      <th>Prix unitaire</th>
+      <th>Total ligne</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (item of commandeProduitService.commandeProduits(); track item.id_Commande + '-' + item.id_Produit + '-' + item.id_Dimension) {
+      <tr>
+        <td>{{ item.id_Commande }}</td>
+        <td>{{ item.id_Produit }}</td>
+        <td>{{ item.id_Dimension }}</td>
+        <td>{{ item.quantite }}</td>
+        <td>{{ item.prix_Unitaire }} €</td>
+        <td>{{ item.quantite * item.prix_Unitaire }} €</td>
+        <td>
+          <button (click)="delete(item)">Supprimer</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

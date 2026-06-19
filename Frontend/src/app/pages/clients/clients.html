@@ -1,0 +1,73 @@
+<h2>Gestion des clients</h2>
+
+<form class="form" (ngSubmit)="save()">
+  <input
+    name="nom"
+    placeholder="Nom"
+    [(ngModel)]="form.nom_Client"
+    required
+  >
+
+  <input
+    name="adresse"
+    placeholder="Adresse"
+    [(ngModel)]="form.adresse_Client"
+    required
+  >
+
+  <input
+    name="tel"
+    placeholder="Téléphone"
+    [(ngModel)]="form.tel_Client"
+    required
+  >
+
+  <select name="typeClient" [(ngModel)]="form.id_Type_Client">
+    @for (type of typeClientService.typeClients(); track type.id_Type_Client) {
+      <option [value]="type.id_Type_Client">
+        {{ type.nom_Type }}
+      </option>
+    }
+  </select>
+
+  <button type="submit">
+    @if (editingId()) {
+      Modifier
+    } @else {
+      Ajouter
+    }
+  </button>
+
+  @if (editingId()) {
+    <button type="button" (click)="reset()">Annuler</button>
+  }
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Adresse</th>
+      <th>Téléphone</th>
+      <th>Type</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (client of clientService.clients(); track client.id_Client) {
+      <tr>
+        <td>{{ client.id_Client }}</td>
+        <td>{{ client.nom_Client }}</td>
+        <td>{{ client.adresse_Client }}</td>
+        <td>{{ client.tel_Client }}</td>
+        <td>{{ client.id_Type_Client }}</td>
+        <td>
+          <button (click)="edit(client)">Modifier</button>
+          <button (click)="delete(client.id_Client)">Supprimer</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

@@ -1,0 +1,86 @@
+<h2>Gestion des commandes</h2>
+
+<form class="form" (ngSubmit)="save()">
+  <input name="date" type="date" [(ngModel)]="form.date_Commande" required>
+
+  <input
+    name="total"
+    type="number"
+    placeholder="Total"
+    [(ngModel)]="form.total_Commande"
+    (ngModelChange)="calculerReste()"
+    required
+  >
+
+  <input
+    name="paye"
+    type="number"
+    placeholder="Montant payé"
+    [(ngModel)]="form.montant_Paye"
+    (ngModelChange)="calculerReste()"
+    required
+  >
+
+  <input
+    name="reste"
+    type="number"
+    placeholder="Reste à payer"
+    [(ngModel)]="form.reste_A_Payer"
+    readonly
+  >
+
+  <select name="statut" [(ngModel)]="form.statut_Commande">
+    <option value="En cours">En cours</option>
+    <option value="Terminée">Terminée</option>
+    <option value="Annulée">Annulée</option>
+  </select>
+
+  <select name="client" [(ngModel)]="form.id_Client">
+    @for (client of clientService.clients(); track client.id_Client) {
+      <option [value]="client.id_Client">
+        {{ client.nom_Client }}
+      </option>
+    }
+  </select>
+
+  <button type="submit">
+    @if (editingId()) { Modifier } @else { Ajouter }
+  </button>
+
+  @if (editingId()) {
+    <button type="button" (click)="reset()">Annuler</button>
+  }
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Total</th>
+      <th>Payé</th>
+      <th>Reste</th>
+      <th>Statut</th>
+      <th>Client</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (commande of commandeService.commandes(); track commande.id_Commande) {
+      <tr>
+        <td>{{ commande.id_Commande }}</td>
+        <td>{{ commande.date_Commande }}</td>
+        <td>{{ commande.total_Commande }} €</td>
+        <td>{{ commande.montant_Paye }} €</td>
+        <td>{{ commande.reste_A_Payer }} €</td>
+        <td>{{ commande.statut_Commande }}</td>
+        <td>{{ commande.id_Client }}</td>
+        <td>
+          <button (click)="edit(commande)">Modifier</button>
+          <button (click)="delete(commande.id_Commande)">Supprimer</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

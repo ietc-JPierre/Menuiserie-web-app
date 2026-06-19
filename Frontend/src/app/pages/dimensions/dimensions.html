@@ -1,0 +1,42 @@
+<h2>Gestion des dimensions</h2>
+
+<form class="form" (ngSubmit)="save()">
+  <input type="number" name="hauteur" placeholder="Hauteur" [(ngModel)]="form.hauteur" required>
+  <input type="number" name="section" placeholder="Section" [(ngModel)]="form.section" required>
+  <input type="number" name="largeur" placeholder="Largeur" [(ngModel)]="form.largeur" required>
+
+  <button type="submit">
+    @if (editingId()) { Modifier } @else { Ajouter }
+  </button>
+
+  @if (editingId()) {
+    <button type="button" (click)="reset()">Annuler</button>
+  }
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Hauteur</th>
+      <th>Section</th>
+      <th>Largeur</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (dimension of dimensionService.dimensions(); track dimension.id_Dimension) {
+      <tr>
+        <td>{{ dimension.id_Dimension }}</td>
+        <td>{{ dimension.hauteur }}</td>
+        <td>{{ dimension.section }}</td>
+        <td>{{ dimension.largeur }}</td>
+        <td>
+          <button (click)="edit(dimension)">Modifier</button>
+          <button (click)="delete(dimension.id_Dimension)">Supprimer</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

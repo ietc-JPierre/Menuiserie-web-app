@@ -1,0 +1,58 @@
+<h2>Gestion du personnel</h2>
+
+<form class="form" (ngSubmit)="save()">
+  <input
+    name="idPersonnel"
+    placeholder="ID Personnel"
+    [(ngModel)]="form.id_Personnel"
+    [disabled]="editingId() !== null"
+    required
+  >
+
+  <input
+    name="nom"
+    placeholder="Nom"
+    [(ngModel)]="form.nom"
+    required
+  >
+
+  <input
+    name="role"
+    placeholder="Rôle"
+    [(ngModel)]="form.role"
+    required
+  >
+
+  <button type="submit">
+    @if (editingId()) { Modifier } @else { Ajouter }
+  </button>
+
+  @if (editingId()) {
+    <button type="button" (click)="reset()">Annuler</button>
+  }
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID Personnel</th>
+      <th>Nom</th>
+      <th>Rôle</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (personnel of personnelService.personnels(); track personnel.id_Personnel) {
+      <tr>
+        <td>{{ personnel.id_Personnel }}</td>
+        <td>{{ personnel.nom }}</td>
+        <td>{{ personnel.role }}</td>
+        <td>
+          <button (click)="edit(personnel)">Modifier</button>
+          <button (click)="delete(personnel.id_Personnel)">Supprimer</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

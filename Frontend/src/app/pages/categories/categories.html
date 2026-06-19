@@ -1,0 +1,45 @@
+<h2>Gestion des catégories</h2>
+
+<form class="form" (ngSubmit)="save()">
+  <input
+    name="nomCategorie"
+    placeholder="Nom de la catégorie"
+    [(ngModel)]="form.nom_categorie"
+    required
+  >
+
+  <button type="submit">
+    @if (editingId()) {
+      Modifier
+    } @else {
+      Ajouter
+    }
+  </button>
+
+  @if (editingId()) {
+    <button type="button" (click)="reset()">Annuler</button>
+  }
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (categorie of categorieService.categories(); track categorie.id_Categorie) {
+      <tr>
+        <td>{{ categorie.id_Categorie }}</td>
+        <td>{{ categorie.nom_categorie }}</td>
+        <td>
+          <button (click)="edit(categorie)">Modifier</button>
+          <button (click)="delete(categorie.id_Categorie)">Supprimer</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

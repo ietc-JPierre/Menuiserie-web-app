@@ -1,0 +1,32 @@
+<div class="auth-container">
+  <h2>Connexion</h2>
+
+  @if (errorMessage) {
+    <p class="error">{{ errorMessage }}</p>
+  }
+
+  <form (ngSubmit)="login()" class="auth-form">
+    <input
+      type="email"
+      name="email"
+      placeholder="Email"
+      [(ngModel)]="form.email"
+      required
+    >
+
+    <input
+      type="password"
+      name="password"
+      placeholder="Mot de passe"
+      [(ngModel)]="form.password"
+      required
+    >
+
+    <button type="submit">Se connecter</button>
+  </form>
+
+  <p>
+    Pas encore de compte ?
+    <a routerLink="/register">Créer un compte</a>
+  </p>
+</div>

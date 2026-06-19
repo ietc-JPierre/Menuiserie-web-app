@@ -1,0 +1,55 @@
+<h2>Gestion des chantiers</h2>
+
+<form class="form" (ngSubmit)="save()">
+  <input name="nom" placeholder="Nom chantier" [(ngModel)]="form.nom_Chantier" required>
+  <input name="rue" placeholder="Rue" [(ngModel)]="form.rue" required>
+  <input name="debut" type="date" [(ngModel)]="form.date_Debut_Chantier" required>
+  <input name="fin" type="date" [(ngModel)]="form.date_Fin_Chantier" required>
+
+  <select name="codePostal" [(ngModel)]="form.code_Postal" required>
+    @for (cp of codePostalService.codesPostaux(); track cp.code_Postal) {
+      <option [value]="cp.code_Postal">
+        {{ cp.code_Postal }} - {{ cp.ville }}
+      </option>
+    }
+  </select>
+
+  <button type="submit">
+    @if (editingId()) { Modifier } @else { Ajouter }
+  </button>
+
+  @if (editingId()) {
+    <button type="button" (click)="reset()">Annuler</button>
+  }
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Rue</th>
+      <th>Début</th>
+      <th>Fin</th>
+      <th>Code postal</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (chantier of chantierService.chantiers(); track chantier.id_Chantier) {
+      <tr>
+        <td>{{ chantier.id_Chantier }}</td>
+        <td>{{ chantier.nom_Chantier }}</td>
+        <td>{{ chantier.rue }}</td>
+        <td>{{ chantier.date_Debut_Chantier }}</td>
+        <td>{{ chantier.date_Fin_Chantier }}</td>
+        <td>{{ chantier.code_Postal }}</td>
+        <td>
+          <button (click)="edit(chantier)">Modifier</button>
+          <button (click)="delete(chantier.id_Chantier)">Supprimer</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
