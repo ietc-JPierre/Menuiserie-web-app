@@ -21,25 +21,29 @@
   }
 </form>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nom</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    @for (categorie of categorieService.categories(); track categorie.id_Categorie) {
+@if (categorieService.categories().length === 0) {
+  <p>Aucune catégorie enregistrée.</p>
+} @else {
+  <table>
+    <thead>
       <tr>
-        <td>{{ categorie.id_Categorie }}</td>
-        <td>{{ categorie.nom_categorie }}</td>
-        <td>
-          <button (click)="edit(categorie)">Modifier</button>
-          <button (click)="delete(categorie.id_Categorie)">Supprimer</button>
-        </td>
+        <th>ID</th>
+        <th>Nom catégorie</th>
+        <th>Actions</th>
       </tr>
-    }
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      @for (categorie of categorieService.categories(); track categorie.id_Categorie) {
+        <tr>
+          <td>{{ categorie.id_Categorie }}</td>
+          <td>{{ categorie.nom_categorie }}</td>
+          <td>
+            <button type="button" (click)="edit(categorie)">Modifier</button>
+            <button type="button" (click)="delete(categorie.id_Categorie)">Supprimer</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}

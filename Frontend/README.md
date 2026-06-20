@@ -1,59 +1,213 @@
-# MenuiserieApp
+# Menuiserie Web App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.11.
+## Présentation
 
-## Development server
+Application web de gestion d'une menuiserie développée dans le cadre du cours Angular / .NET.
 
-To start a local development server, run:
+L'application permet :
+
+* Gestion des clients
+* Gestion des produits
+* Gestion des catégories
+* Gestion des dimensions
+* Gestion du personnel
+* Gestion des chantiers
+* Gestion des commandes
+* Gestion des détails de commandes
+* Authentification utilisateur via JWT
+
+---
+
+# Technologies utilisées
+
+## Frontend
+
+* Angular
+* TypeScript
+* Angular Router
+* Angular Signals
+* HttpClient
+
+## Backend
+
+* ASP.NET Core (.NET)
+* Architecture 3 couches :
+
+  * API
+  * Core
+  * Infrastructure
+* Dapper
+* SQLite
+* JWT Authentication
+
+---
+
+# Prérequis
+
+Installer :
+
+* .NET 10 SDK
+* Node.js
+* Angular CLI
+* Git
+
+Vérification :
 
 ```bash
+dotnet --version
+node --version
+ng version
+```
+
+---
+
+# Structure du projet
+
+```txt
+Menuiserie-web-app
+│
+├── Frontend
+│
+└── Backend
+    ├── Api
+    ├── Core
+    └── Infrastructure
+```
+
+---
+
+# Base de données
+
+Le projet utilise SQLite.
+
+Le script de création de la base se trouve dans :
+
+```txt
+Backend/Infrastructure/db.sql
+```
+
+La base est créée automatiquement au premier démarrage de l'API.
+
+---
+
+# Configuration
+
+## Backend
+
+Fichier :
+
+```txt
+Backend/Api/appsettings.json
+```
+
+Chaîne de connexion :
+
+```json
+"ConnectionStrings": {
+  "DefaultConnection": "Data Source=../Infrastructure/menuiserie.db"
+}
+```
+
+---
+
+# Lancement du Backend
+
+Depuis la racine du projet :
+
+```bash
+cd Backend
+dotnet restore
+dotnet build
+dotnet run --project Api
+```
+
+L'API démarre sur :
+
+```txt
+http://localhost:5110
+```
+
+Documentation OpenAPI :
+
+```txt
+http://localhost:5110/openapi/v1.json
+```
+
+---
+
+# Lancement du Frontend
+
+Depuis la racine du projet :
+
+```bash
+cd Frontend
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+L'application démarre sur :
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```txt
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
+# Authentification
+
+Créer un compte :
+
+```txt
+http://localhost:4200/register
 ```
 
-## Building
+Connexion :
 
-To build the project run:
-
-```bash
-ng build
+```txt
+http://localhost:4200/login
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Compte de démonstration :
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
+```txt
+Email : peter@test.be
+Mot de passe : 123456
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+# Fonctionnalités
 
-```bash
-ng e2e
+* Authentification JWT
+* Gestion des clients
+* Gestion des produits
+* Gestion des catégories
+* Gestion des dimensions
+* Gestion du personnel
+* Gestion des chantiers
+* Gestion des commandes
+* Gestion des détails de commandes
+
+---
+
+# Nettoyage avant remise
+
+Ne pas inclure :
+
+```txt
+Frontend/node_modules
+Frontend/.angular
+
+Backend/**/bin
+Backend/**/obj
+
+Backend/Infrastructure/menuiserie.db
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+# Auteur
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+J.Pierre Nsengiyumva
+
+Projet réalisé dans le cadre du cours Angular / .NET.

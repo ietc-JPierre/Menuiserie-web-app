@@ -16,9 +16,9 @@
     required
   >
 
-  <select name="categorie" [(ngModel)]="form.id_Categorie">
+  <select name="categorie" [(ngModel)]="form.id_Categorie" required>
     @for (categorie of categorieService.categories(); track categorie.id_Categorie) {
-      <option [value]="categorie.id_Categorie">
+      <option [ngValue]="categorie.id_Categorie">
         {{ categorie.nom_categorie }}
       </option>
     }
@@ -37,29 +37,33 @@
   }
 </form>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Produit</th>
-      <th>Prix</th>
-      <th>Catégorie</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    @for (produit of produitService.produits(); track produit.id_Produit) {
+@if (produitService.produits().length === 0) {
+  <p>Aucun produit enregistré.</p>
+} @else {
+  <table>
+    <thead>
       <tr>
-        <td>{{ produit.id_Produit }}</td>
-        <td>{{ produit.nom_produit }}</td>
-        <td>{{ produit.prix_unitaire_produit }} €</td>
-        <td>{{ getNomCategorie(produit.id_Categorie) }}</td>
-        <td>
-          <button (click)="edit(produit)">Modifier</button>
-          <button (click)="delete(produit.id_Produit)">Supprimer</button>
-        </td>
+        <th>ID</th>
+        <th>Produit</th>
+        <th>Prix unitaire</th>
+        <th>Catégorie</th>
+        <th>Actions</th>
       </tr>
-    }
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      @for (produit of produitService.produits(); track produit.id_Produit) {
+        <tr>
+          <td>{{ produit.id_Produit }}</td>
+          <td>{{ produit.nom_produit }}</td>
+          <td>{{ produit.prix_unitaire_produit }} €</td>
+          <td>{{ getNomCategorie(produit.id_Categorie) }}</td>
+          <td>
+            <button type="button" (click)="edit(produit)">Modifier</button>
+            <button type="button" (click)="delete(produit.id_Produit)">Supprimer</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}

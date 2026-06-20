@@ -3,10 +3,21 @@ CREATE TABLE Type_client(
    nom_type TEXT NOT NULL
 );
 
+INSERT INTO Type_client(nom_type) VALUES
+('Particulier'),
+('Entreprise'),
+('Administration');
+
 CREATE TABLE Categorie(
    Id_Categorie INTEGER PRIMARY KEY AUTOINCREMENT,
    nom_categorie TEXT NOT NULL
 );
+
+INSERT INTO Categorie(nom_categorie) VALUES
+('Porte'),
+('Châssis'),
+('Meuble');
+
 
 CREATE TABLE Dimension(
    Id_Dimension INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -14,6 +25,12 @@ CREATE TABLE Dimension(
    section REAL NOT NULL,
    largeur REAL NOT NULL
 );
+
+INSERT INTO Dimension(hauteur, section, largeur) VALUES
+(210, 5, 90),
+(120, 4, 100),
+(200, 6, 80);
+
 
 CREATE TABLE Personnel(
    Id_Personnel TEXT PRIMARY KEY,
@@ -26,6 +43,11 @@ CREATE TABLE Code_postal_chantier(
    ville TEXT NOT NULL
 );
 
+INSERT INTO Code_postal_chantier(code_postal, ville) VALUES
+('1300', 'Wavre'),
+('1348', 'Louvain-la-Neuve'),
+('1000', 'Bruxelles');
+
 CREATE TABLE Client(
    Id_Client INTEGER PRIMARY KEY AUTOINCREMENT,
    nom_client TEXT NOT NULL,
@@ -33,6 +55,21 @@ CREATE TABLE Client(
    tel_client TEXT NOT NULL,
    Id_Type_client INTEGER NOT NULL,
    FOREIGN KEY(Id_Type_client) REFERENCES Type_client(Id_Type_client)
+);
+
+INSERT INTO Client
+(
+    nom_client,
+    adresse_client,
+    tel_client,
+    Id_Type_client
+)
+VALUES
+(
+    'Dupont',
+    '10 Rue de Paris',
+    '0600000000',
+    1
 );
 
 CREATE TABLE Produit(
@@ -100,24 +137,5 @@ CREATE TABLE User(
    role TEXT NOT NULL
 );
 
-INSERT INTO Client
-(
-    nom_client,
-    adresse_client,
-    tel_client,
-    Id_Type_client
-)
-VALUES
-(
-    'Dupont',
-    '10 Rue de Paris',
-    '0600000000',
-    1
-);
 
-INSERT INTO Type_client(nom_type)
-VALUES
-('Particulier'),
-('Entreprise'),
-('Administration');
 
