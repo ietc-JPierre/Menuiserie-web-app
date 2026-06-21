@@ -11,5 +11,9 @@ export const authGuard: CanActivateFn = () => {
     return true;
   }
 
+  authService.message.set(
+    'Veuillez vous connecter pour accéder à cette page.'
+  );
+
   return router.createUrlTree(['/login']);
 };

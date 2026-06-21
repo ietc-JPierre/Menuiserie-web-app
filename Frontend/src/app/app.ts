@@ -1,5 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+
 import { AuthService } from './core/services/auth.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { AuthService } from './core/services/auth.service';
 export class App {
   protected readonly title = signal('menuiserie-app');
 
-  private authService = inject(AuthService);
+  authService = inject(AuthService);
 
   logout() {
     this.authService.logout();

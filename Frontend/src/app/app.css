@@ -41,3 +41,25 @@ body {
 .container {
   padding: 24px;
 }
+
+.auth-button {
+  margin-left: auto;
+  background: #2c7be5;
+  color: white !important;
+  text-decoration: none;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.auth-button:hover {
+  background: #1b5fc7;
+  text-decoration: none;
+}
+
+.navbar button.auth-button {
+  background: #c0392b;
+}

@@ -17,7 +17,7 @@ export class Categories implements OnInit {
 
   form: Categorie = {
     id_Categorie: 0,
-    nom_categorie: ''
+    nom_Categorie: ''
   };
 
   ngOnInit() {
@@ -56,7 +56,7 @@ export class Categories implements OnInit {
 
     this.form = {
       id_Categorie: 0,
-      nom_categorie: ''
+      nom_Categorie: ''
     };
   }
 }

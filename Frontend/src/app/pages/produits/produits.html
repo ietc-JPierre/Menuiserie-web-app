@@ -4,7 +4,7 @@
   <input
     name="nomProduit"
     placeholder="Nom du produit"
-    [(ngModel)]="form.nom_produit"
+    [(ngModel)]="form.nom_Produit"
     required
   >
 
@@ -12,14 +12,14 @@
     name="prixProduit"
     type="number"
     placeholder="Prix unitaire"
-    [(ngModel)]="form.prix_unitaire_produit"
+    [(ngModel)]="form.prix_Unitaire_Produit"
     required
   >
 
   <select name="categorie" [(ngModel)]="form.id_Categorie" required>
     @for (categorie of categorieService.categories(); track categorie.id_Categorie) {
       <option [ngValue]="categorie.id_Categorie">
-        {{ categorie.nom_categorie }}
+        {{ categorie.nom_Categorie }}
       </option>
     }
   </select>
@@ -55,8 +55,8 @@
       @for (produit of produitService.produits(); track produit.id_Produit) {
         <tr>
           <td>{{ produit.id_Produit }}</td>
-          <td>{{ produit.nom_produit }}</td>
-          <td>{{ produit.prix_unitaire_produit }} €</td>
+          <td>{{ produit.nom_Produit }}</td>
+          <td>{{ produit.prix_Unitaire_Produit }} €</td>
           <td>{{ getNomCategorie(produit.id_Categorie) }}</td>
           <td>
             <button type="button" (click)="edit(produit)">Modifier</button>

@@ -4,7 +4,7 @@
   <input
     name="nomCategorie"
     placeholder="Nom de la catégorie"
-    [(ngModel)]="form.nom_categorie"
+    [(ngModel)]="form.nom_Categorie"
     required
   >
 
@@ -37,7 +37,7 @@
       @for (categorie of categorieService.categories(); track categorie.id_Categorie) {
         <tr>
           <td>{{ categorie.id_Categorie }}</td>
-          <td>{{ categorie.nom_categorie }}</td>
+          <td>{{ categorie.nom_Categorie }}</td>
           <td>
             <button type="button" (click)="edit(categorie)">Modifier</button>
             <button type="button" (click)="delete(categorie.id_Categorie)">Supprimer</button>

@@ -19,8 +19,8 @@ export class Produits implements OnInit {
 
   form: Produit = {
     id_Produit: 0,
-    nom_produit: '',
-    prix_unitaire_produit: 0,
+    nom_Produit: '',
+    prix_Unitaire_Produit: 0,
     id_Categorie: 1
   };
 
@@ -61,8 +61,8 @@ export class Produits implements OnInit {
 
     this.form = {
       id_Produit: 0,
-      nom_produit: '',
-      prix_unitaire_produit: 0,
+      nom_Produit: '',
+      prix_Unitaire_Produit: 0,
       id_Categorie: 1
     };
   }
@@ -70,6 +70,6 @@ export class Produits implements OnInit {
   getNomCategorie(idCategorie: number) {
     return this.categorieService.categories()
       .find(c => c.id_Categorie === idCategorie)
-      ?.nom_categorie ?? 'Inconnue';
+      ?.nom_Categorie ?? 'Inconnue';
   }
 }

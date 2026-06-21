@@ -12,7 +12,7 @@
   <select name="produit" [(ngModel)]="form.id_Produit">
     @for (produit of produitService.produits(); track produit.id_Produit) {
       <option [value]="produit.id_Produit">
-        {{ produit.nom_produit }}
+        {{ produit.nom_Produit }}
       </option>
     }
   </select>

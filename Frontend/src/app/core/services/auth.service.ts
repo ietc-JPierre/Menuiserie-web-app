@@ -20,6 +20,8 @@ export class AuthService {
   username = signal<string | null>(localStorage.getItem('username'));
   role = signal<string | null>(localStorage.getItem('role'));
 
+  message = signal<string | null>(null);
+
   isLoggedIn = computed(() => this.token() !== null);
 
   login(request: LoginRequest) {
@@ -38,6 +40,7 @@ export class AuthService {
     this.token.set(response.token);
     this.username.set(response.username);
     this.role.set(response.role);
+    this.message.set(null);
   }
 
   logout() {
@@ -48,6 +51,8 @@ export class AuthService {
     this.token.set(null);
     this.username.set(null);
     this.role.set(null);
+
+    this.message.set('Vous avez été déconnecté.');
 
     this.router.navigate(['/login']);
   }

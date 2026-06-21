@@ -30,10 +30,11 @@
   >
 
   <select name="statut" [(ngModel)]="form.statut_Commande">
+    <option value="Validée">Validée</option>
     <option value="En cours">En cours</option>
     <option value="Terminée">Terminée</option>
     <option value="Annulée">Annulée</option>
-  </select>
+    </select>
 
   <select name="client" [(ngModel)]="form.id_Client">
     @for (client of clientService.clients(); track client.id_Client) {

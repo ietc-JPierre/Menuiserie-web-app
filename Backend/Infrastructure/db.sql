@@ -27,9 +27,9 @@ CREATE TABLE Dimension(
 );
 
 INSERT INTO Dimension(hauteur, section, largeur) VALUES
-(210, 5, 90),
-(120, 4, 100),
-(200, 6, 80);
+(2100, 77, 900),
+(1200, 57, 1000),
+(2040, 57, 980);
 
 
 CREATE TABLE Personnel(
@@ -45,7 +45,7 @@ CREATE TABLE Code_postal_chantier(
 
 INSERT INTO Code_postal_chantier(code_postal, ville) VALUES
 ('1300', 'Wavre'),
-('1348', 'Louvain-la-Neuve'),
+('5000', 'Namur'),
 ('1000', 'Bruxelles');
 
 CREATE TABLE Client(
@@ -89,6 +89,8 @@ CREATE TABLE Chantier(
    code_postal TEXT NOT NULL,
    FOREIGN KEY(code_postal) REFERENCES Code_postal_chantier(code_postal)
 );
+
+
 
 CREATE TABLE Commande(
    Id_Commande INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -11,7 +11,15 @@
   <a routerLink="/dimensions">Dimensions</a>
   <a routerLink="/commande-produits">Détails commandes</a>
 
-  <button type="button" (click)="logout()">Déconnexion</button>
+  @if (authService.isLoggedIn()) {
+    <button class="auth-button" type="button" (click)="logout()">
+      Déconnexion
+    </button>
+  } @else {
+    <a routerLink="/login" class="auth-button">
+      Connexion
+    </a>
+  }
 </nav>
 
 <main class="container">

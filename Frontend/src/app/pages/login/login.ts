@@ -12,7 +12,8 @@ import { LoginRequest } from '../../models/login-request.model';
   styleUrl: './login.css'
 })
 export class Login {
-  private authService = inject(AuthService);
+  authService = inject(AuthService);
+
   private router = inject(Router);
 
   errorMessage = '';
