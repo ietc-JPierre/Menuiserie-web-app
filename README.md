@@ -57,7 +57,7 @@ Vérification :
 dotnet --version
 node --version
 ng version
-```
+
 
 ---
 
@@ -82,9 +82,9 @@ Le projet utilise SQLite.
 
 Le script de création de la base se trouve dans :
 
-```txt
+
 Backend/Infrastructure/db.sql
-```
+
 
 La base est créée automatiquement au premier démarrage de l'API.
 
@@ -96,17 +96,16 @@ La base est créée automatiquement au premier démarrage de l'API.
 
 Fichier :
 
-```txt
+
 Backend/Api/appsettings.json
-```
+
 
 Chaîne de connexion :
 
-```json
 "ConnectionStrings": {
   "DefaultConnection": "Data Source=../Infrastructure/menuiserie.db"
 }
-```
+
 
 ---
 
@@ -114,24 +113,21 @@ Chaîne de connexion :
 
 Depuis la racine du projet :
 
-```bash
+
 cd Backend
 dotnet restore
 dotnet build
 dotnet run --project Api
-```
 
 L'API démarre sur :
 
-```txt
 http://localhost:5110
-```
+
 
 Documentation OpenAPI :
 
-```txt
 http://localhost:5110/openapi/v1.json
-```
+
 
 ---
 
@@ -139,17 +135,14 @@ http://localhost:5110/openapi/v1.json
 
 Depuis la racine du projet :
 
-```bash
 cd Frontend
 npm install
 ng serve
-```
+
 
 L'application démarre sur :
 
-```txt
 http://localhost:4200
-```
 
 ---
 
@@ -157,22 +150,22 @@ http://localhost:4200
 
 Créer un compte :
 
-```txt
+
 http://localhost:4200/register
-```
+
 
 Connexion :
 
-```txt
+
 http://localhost:4200/login
-```
+
 
 Compte de démonstration :
 
-```txt
+
 Email : peter@test.be
 Mot de passe : 123456
-```
+
 
 ---
 
@@ -194,7 +187,6 @@ Mot de passe : 123456
 
 Ne pas inclure :
 
-```txt
 Frontend/node_modules
 Frontend/.angular
 
@@ -202,7 +194,7 @@ Backend/**/bin
 Backend/**/obj
 
 Backend/Infrastructure/menuiserie.db
-```
+
 
 ---
 
